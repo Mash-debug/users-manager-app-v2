@@ -10,7 +10,7 @@ import './index.css';
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: RootLayout,
+    Component: RootLayout, // METTRE LANDINGPAGE
   },
   {
     path: "/login",

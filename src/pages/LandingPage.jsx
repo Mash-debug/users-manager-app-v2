@@ -3,7 +3,7 @@ import { useState } from "react";
 import { JavaScriptOutlined } from "@ant-design/icons";
 
 
-function HomePage() {
+function LandingPage() {
   const [isLoading, setIsLoading] = useState(false);
   return (
     <>
@@ -23,4 +23,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default LandingPage;
