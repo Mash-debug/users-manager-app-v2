@@ -6,24 +6,36 @@ import LoginPage from './pages/LoginPage'
 import RootLayout from './layouts/RootLayout'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css';
+import LandingPage from './pages/LandingPage'
+import AccountPage from './pages/AccountPage'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: RootLayout, // METTRE LANDINGPAGE
+    Component: LandingPage,
   },
   {
     path: "/login",
     Component: LoginPage,
   },
   {
-    path: "/users",
-    Component: UsersPage,
+    path: "/register",
+    Component: RegisterPage,
   },
   {
-    path: "/register",
-    Component: RegisterPage
-  }
+    path: "/dashboard",
+    Component: RootLayout,
+    children: [
+      {
+        path: "account",
+        Component: AccountPage
+      },
+      {
+        path: "users",
+        Component: UsersPage
+      }
+    ],
+  }, 
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
