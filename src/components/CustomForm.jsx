@@ -4,7 +4,7 @@ import Button from "./Button";
 
 
 // eslint-disable-next-line react/prop-types
-export default function CustomForm({ onFinish, fields = [], btnMessage = "Valider", isLoading = false }) {
+export default function CustomForm({ onFinish, fields = [], btnMessage = "Valider", isLoading = false, initialValues = {} }) {
   
   const [form] = Form.useForm();
 
@@ -20,6 +20,7 @@ export default function CustomForm({ onFinish, fields = [], btnMessage = "Valide
       layout="vertical"
       initialValues={{
         remember: true,
+        ...initialValues
       }}
     >
       {(!fields.length || fields.includes("name")) && (

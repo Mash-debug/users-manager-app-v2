@@ -15,6 +15,7 @@ export default function Button({style, children, ...props}) {
             defaultActiveBorderColor: "white",
             defaultActiveColor: "#f857a6",
             defaultHoverBorderColor: "#f857a6",
+            fontWeight: 1000
           },
         },
       }}

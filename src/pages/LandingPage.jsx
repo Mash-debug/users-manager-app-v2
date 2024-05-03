@@ -1,12 +1,14 @@
 import { Flex, Typography } from "antd";
 import usersManagerPhoto from "../assets/users-manager-photo.webp";
 import featuresUser from "../assets/features-user.svg";
-import NavBar from "../components/NavBar";
+import { useMediaQuery } from "usehooks-ts";
 
 function LandingPage() {
+  const matchesMd = useMediaQuery("(max-width: 750px)");
+   
+
   return (
     <>
-      <NavBar />
       <Flex justify="flex-start" vertical>
         <div id="form"></div>
         <Typography.Title
@@ -23,9 +25,10 @@ function LandingPage() {
         </Typography.Title>
         {/* <CustomForm name="login" onFinish={(values) => console.log(values)} /> */}
         <Flex
+          vertical={matchesMd}
           align="center"
           justify="space-around"
-          style={{ height: "fit-content", padding: 32 }}
+          style={{ height: "fit-content", padding: matchesMd ? 0 : 32 }}
         >
           <Typography.Text
             style={{
@@ -39,17 +42,12 @@ function LandingPage() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, rem
             in magni eaque pariatur quam accusantium totam mollitia dolore.
             Saepe eius eos quia sunt possimus est, nihil dignissimos rem
-            repellendus! Recusandae, vitae suscipit accusantium praesentium,
-            voluptas, id cum ab incidunt blanditiis iusto dolorem sequi eligendi
-            quo unde veritatis ipsa culpa similique aut perspiciatis. Iste ea
-            beatae saepe! Obcaecati, nobis quam. Fuga optio assumenda aperiam,
-            placeat cumque ut, consequuntur, natus quaerat vel accusantium
-            voluptate aspernatur aliquid. Corporis, natus magni. Autem quo qui
-            vitae error reiciendis id quas voluptatem accusantium et excepturi.
+            repellendus!
           </Typography.Text>
-          <img src={usersManagerPhoto} width="25%" style={{}} alt="User" />
+          <img src={usersManagerPhoto} width={matchesMd ? "50%" : "25%" } style={{}} alt="User" />
         </Flex>
         <Flex
+          vertical={matchesMd}
           align="center"
           justify="space-around"
           style={{
@@ -58,7 +56,7 @@ function LandingPage() {
             padding: 32,
           }}
         >
-          <img src={featuresUser} width="25%" style={{}} alt="User" />
+          <img src={featuresUser} width={matchesMd ? "50%" : "25%" } style={{paddingBottom: matchesMd && 16}} alt="User" />
           <Typography.Text
             style={{
               width: "50%",
@@ -71,13 +69,7 @@ function LandingPage() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, rem
             in magni eaque pariatur quam accusantium totam mollitia dolore.
             Saepe eius eos quia sunt possimus est, nihil dignissimos rem
-            repellendus! Recusandae, vitae suscipit accusantium praesentium,
-            voluptas, id cum ab incidunt blanditiis iusto dolorem sequi eligendi
-            quo unde veritatis ipsa culpa similique aut perspiciatis. Iste ea
-            beatae saepe! Obcaecati, nobis quam. Fuga optio assumenda aperiam,
-            placeat cumque ut, consequuntur, natus quaerat vel accusantium
-            voluptate aspernatur aliquid. Corporis, natus magni. Autem quo qui
-            vitae error reiciendis id quas voluptatem accusantium et excepturi.
+            repellendus!
           </Typography.Text>
         </Flex>
       </Flex>
