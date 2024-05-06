@@ -9,9 +9,11 @@ import { useMediaQuery } from "usehooks-ts";
 import RootMenu from "./RootMenu";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
+import { Paths } from "../constants/paths.js";
+import { Strings } from "../constants/strings.js";
 
 export default function NavBar() {
-  const matches = useMediaQuery("(max-width: 850px");
+  const matches = useMediaQuery("(max-width: 850px)");
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [isOpenedDrawer, setIsOpenedDrawer] = useState(false);
@@ -40,26 +42,26 @@ export default function NavBar() {
 
   const buttonsNav = (
     <>
-      <Link to="/login" onClick={handleCloseDrawer}>
+      <Link to={Paths.login} onClick={handleCloseDrawer}>
         <Button
           size="large"
           style={{
-            boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+            boxShadow: Colors.shadow,
             width: "100%",
           }}
         >
-          Connexion
+          {Strings.buttons.login}
         </Button>
       </Link>
-      <Link to="/register" onClick={handleCloseDrawer}>
+      <Link to={Paths.register} onClick={handleCloseDrawer}>
         <Button
           size="large"
           style={{
-            boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+            boxShadow: Colors.shadow,
             width: "100%",
           }}
         >
-          Inscription
+          {Strings.buttons.register}
         </Button>
       </Link>
     </>
@@ -83,18 +85,18 @@ export default function NavBar() {
           align="center"
           style={{ width: matches ? "100%" : "50%" }}
         >
-          <SolutionOutlined style={{ fontSize: 24, color: "white" }} />
-          <Link to="/">
+          <SolutionOutlined style={{ fontSize: 24, color: Colors.white }} />
+          <Link to={Paths.root}>
             <Typography.Title
               style={{
                 margin: 0,
                 marginLeft: "16px",
-                color: "white",
+                color: Colors.white,
                 fontWeight: Fonts.weights.bold,
               }}
               level={matches ? 3 : 1}
             >
-              Users Manager App
+              {Strings.appName}
             </Typography.Title>
           </Link>
           {matches && (
@@ -102,7 +104,7 @@ export default function NavBar() {
               <div
                 className="hamburger"
                 onClick={handleOpenDrawer}
-                style={{ color: "white", fontSize: "1.6rem" }}
+                style={{ color: Colors.white, fontSize: "1.6rem" }}
               >
                 &#9776;
               </div>
@@ -112,7 +114,7 @@ export default function NavBar() {
                     level={4}
                     style={{ fontWeight: Fonts.weights.bold, color: Colors.primary, margin: 0 }}
                   >
-                    Menu
+                    {Strings.menuTitle}
                   </Typography.Title>
                 }
                 onClose={handleCloseDrawer}
@@ -121,7 +123,7 @@ export default function NavBar() {
                   header: {
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "cen",
+                    justifyContent: "center",
                   },
                 }}
               >
@@ -142,11 +144,11 @@ export default function NavBar() {
                       <Button
                         onClick={handleLogout}
                         style={{
-                          boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+                          boxShadow: Colors.shadow,
                           width: "100%",
                         }}
                       >
-                        Se déconnecter
+                        {Strings.buttons.logout}
                       </Button>
                     </>
                   ) : (
@@ -162,16 +164,16 @@ export default function NavBar() {
             <>
               {!matches && (
                 <>
-                  <span style={{ color: "white", fontWeight: Fonts.weights.bold }}>
+                  <span style={{ color: Colors.white, fontWeight: Fonts.weights.bold }}>
                     {user.email}
                   </span>
                   <Button
                     onClick={handleLogout}
                     style={{
-                      boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+                      boxShadow: Colors.shadow,
                     }}
                   >
-                    Se déconnecter
+                    {Strings.buttons.logout}
                   </Button>
                 </>
               )}

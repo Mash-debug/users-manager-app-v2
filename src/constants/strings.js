@@ -1,4 +1,6 @@
 export const Strings = {
+    appName: "Users Manager App",
+    menuTitle: "Menu",
     form: {
         name: {
             label: "Nom",
@@ -29,6 +31,9 @@ export const Strings = {
     buttons: {
         deleteAccount: "Supprimer le compte",
         deleteAccountConfirm: "Etes-vous certain de supprimer votre compte ?",
-        cancel: "Annuler"
+        cancel: "Annuler",
+        login: "Connexion",
+        logout: "Se déconnecter",
+        register: "Inscription",
     }
 }
