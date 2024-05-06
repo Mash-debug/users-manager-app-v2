@@ -13,6 +13,10 @@ export const Strings = {
             entreprise.`
         }
     },
+    loginPage: {
+        title: "Connexion",
+        noAccount: "Pas encore de compte ?",
+    },
     menu: {
         title: "Menu",
         items: {
@@ -58,9 +62,11 @@ export const Strings = {
         deleteAccountConfirm: "Etes-vous certain de supprimer votre compte ?",
         cancel: "Annuler",
         login: "Connexion",
+        loginAlt: "Se connecter",
         logout: "Se déconnecter",
         register: "Inscription",
+        registerAlt: "S'inscrire",
         infoUpdate: "Modifier le nom/prénom",
         passwordUpdate: "Modifier le mot de passe"
-    }
+    },
 }

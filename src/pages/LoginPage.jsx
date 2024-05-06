@@ -6,6 +6,8 @@ import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
+import { Paths } from "../constants/paths.js";
+import { Strings } from "../constants/strings.js";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +27,7 @@ export default function LoginPage() {
 
         if (res.status === 200) {
           setUser({ ...res.data.user });
-          navigate("/dashboard/account");
+          navigate(Paths.account);
         }
       } catch {
         setUser(null);
@@ -57,19 +59,40 @@ export default function LoginPage() {
       <div style={{ padding: 32 }}>
         <Typography.Title
           level={2}
-          style={{ textAlign: "center", color: Colors.primary, margin: 0, fontWeight: Fonts.weights.bold }}
+          style={{
+            textAlign: "center",
+            color: Colors.primary,
+            margin: 0,
+            fontWeight: Fonts.weights.bold,
+          }}
         >
-          Connexion
+          {Strings.loginPage.title}
         </Typography.Title>
-        <Flex justify="center" align="center" vertical style={{width: "fit-content", margin: "auto"}}>
+        <Flex
+          justify="center"
+          align="center"
+          vertical
+          style={{ width: "fit-content", margin: "auto" }}
+        >
           <CustomForm
             onFinish={handleFinish}
             fields={["email", "password"]}
-            btnMessage="Se connecter"
+            btnMessage={Strings.buttons.loginAlt}
             isLoading={isLoading}
           />
-          <span style={{color: Colors.primary, marginTop: 8}}>Pas encore de compte ? <Link to="/register" className="hover-underline" style={{fontWeight: Fonts.weights.bold, color: "inherit"}}>S{"'"}inscrire</Link></span>
-          <span style={{color: "#FF4D4F", marginTop: 8}}>{errorMessage ? errorMessage : null}</span>
+          <span style={{ color: Colors.primary, marginTop: 8 }}>
+            {Strings.loginPage.noAccount}{" "}
+            <Link
+              to={Paths.register}
+              className="hover-underline"
+              style={{ fontWeight: Fonts.weights.bold, color: Colors.primary }}
+            >
+              {Strings.buttons.registerAlt}
+            </Link>
+          </span>
+          <span style={{ color: Colors.error, marginTop: 8 }}>
+            {errorMessage ? errorMessage : null}
+          </span>
         </Flex>
       </div>
     </>
