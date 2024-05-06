@@ -29,6 +29,9 @@ export const Strings = {
             },
             users: {
                 label: "Utilisateurs"
+            },
+            gantt: {
+                label: "Vue Gantt"
             }
         }
     },

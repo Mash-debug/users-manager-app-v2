@@ -5,5 +5,6 @@ export const Paths = {
     register: '/register',
     dashboard: '/dashboard',
     users: '/dashboard/users',
-    account: '/dashboard/account'
+    account: '/dashboard/account',
+    gantt: '/dashboard/gantt'
 }

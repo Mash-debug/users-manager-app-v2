@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BaseLayout from "./layouts/BaseLayout";
 import UserContextProvider from "./contexts/UserContext";
 import { Paths } from "./constants/paths";
+import GanttPage from "./pages/GanttPage";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
         path: "users",
         Component: UsersPage,
       },
+      {
+        path: "gantt",
+        Component: GanttPage
+      }
     ],
   },
 ]);

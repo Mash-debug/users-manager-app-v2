@@ -16,3 +16,7 @@ body {
     text-decoration: underline;
     text-underline-offset: 2px;
 }
+
+.gantt-container {
+    height: 100%;
+}
