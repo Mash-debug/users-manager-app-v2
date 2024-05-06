@@ -25,5 +25,10 @@ export const Strings = {
         },
         fieldEmpty: "Le champ est vide.",
         passwordsNotMatch: "Les deux mots de passe ne correspondent pas",
+    },
+    buttons: {
+        deleteAccount: "Supprimer le compte",
+        deleteAccountConfirm: "Etes-vous certain de supprimer votre compte ?",
+        cancel: "Annuler"
     }
 }
