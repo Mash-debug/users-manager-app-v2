@@ -1,4 +1,6 @@
 import { Button as BaseButton, ConfigProvider } from "antd";
+import { Colors } from "../constants/colors.js";
+import { Fonts } from "../constants/fonts.js";
 
 // eslint-disable-next-line react/prop-types
 export default function Button({style, children, ...props}) {
@@ -7,15 +9,15 @@ export default function Button({style, children, ...props}) {
       theme={{
         components: {
           Button: {
-            defaultBg: "#f857a6",
-            defaultColor: "#ffffff",
-            defaultHoverColor: "#f857a6",
-            defaultBorderColor: "#f857a6",
-            defaultHoverBg: "#ffffff",
-            defaultActiveBorderColor: "white",
-            defaultActiveColor: "#f857a6",
-            defaultHoverBorderColor: "#f857a6",
-            fontWeight: 1000
+            defaultBg: Colors.primary,
+            defaultColor: Colors.white,
+            defaultHoverColor: Colors.primary,
+            defaultBorderColor: Colors.primary,
+            defaultHoverBg: Colors.white,
+            defaultActiveBorderColor: Colors.white,
+            defaultActiveColor: Colors.primary,
+            defaultHoverBorderColor: Colors.primary,
+            fontWeight: Fonts.weights.bold
           },
         },
       }}

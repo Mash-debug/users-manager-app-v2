@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
+import { Colors } from "../constants/colors.js";
+import { Fonts } from "../constants/fonts.js";
 
 export default function UsersPage() {
   const gutter = { xs: 8, sm: 16, md: 24, lg: 32 };
@@ -58,7 +60,7 @@ export default function UsersPage() {
         <Divider orientation="left">
           <Typography.Title
             level={2}
-            style={{ fontWeight: 1000, color: "#f857a6" }}
+            style={{ fontWeight: Fonts.weights.bold, color: Colors.primary }}
           >
             Utilisateurs
           </Typography.Title>
@@ -68,8 +70,8 @@ export default function UsersPage() {
         {users.map((u) => {
           return (
             <Col key={u.id} xs={24} sm={24} md={24} lg={8}>
-              <Card title={u._id} styles={{header: {backgroundColor: "#f857a6", color: "white"}}}>
-                <p style={{fontWeight: 1000}}>{u.name}</p>
+              <Card title={u._id} styles={{header: {backgroundColor: Colors.primary, color: "white"}}}>
+                <p style={{fontWeight: Fonts.weights.bold}}>{u.name}</p>
                 <p>{u.firstname}</p>
               </Card>
             </Col>

@@ -2,6 +2,8 @@ import { Flex, Typography } from "antd";
 import usersManagerPhoto from "../assets/users-manager-photo.webp";
 import featuresUser from "../assets/features-user.svg";
 import { useMediaQuery } from "usehooks-ts";
+import { Colors } from "../constants/colors.js";
+import { Fonts } from "../constants/fonts.js";
 
 function LandingPage() {
   const matchesMd = useMediaQuery("(max-width: 750px)");
@@ -13,8 +15,8 @@ function LandingPage() {
           style={{
             margin: 0,
             padding: 16,
-            color: "#f857a6",
-            fontWeight: 1000,
+            color: Colors.primary,
+            fontWeight: Fonts.weights.bold,
             textAlign: "center",
           }}
           level={2}
@@ -38,7 +40,7 @@ function LandingPage() {
               textAlign: "justify",
               fontSize: "1.1rem",
               fontWeight: 600,
-              color: "#f857a6",
+              color: Colors.primary,
             }}
           >
             Que vous soyez une petite entreprise ou une grande organisation,
@@ -58,7 +60,7 @@ function LandingPage() {
           justify="space-around"
           style={{
             height: "fit-content",
-            backgroundColor: "#f857a6",
+            backgroundColor: Colors.primary,
             padding: 32,
           }}
         >

@@ -7,6 +7,8 @@ import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import { useMediaQuery } from "usehooks-ts";
 import RootMenu from "./RootMenu";
+import { Colors } from "../constants/colors.js";
+import { Fonts } from "../constants/fonts.js";
 
 export default function NavBar() {
   const matches = useMediaQuery("(max-width: 850px");
@@ -67,7 +69,7 @@ export default function NavBar() {
     <>
       <Flex
         style={{
-          backgroundColor: "#f857a6",
+          backgroundColor: Colors.primary,
           padding: 16,
           position: "sticky",
           top: 0,
@@ -88,7 +90,7 @@ export default function NavBar() {
                 margin: 0,
                 marginLeft: "16px",
                 color: "white",
-                fontWeight: 1000,
+                fontWeight: Fonts.weights.bold,
               }}
               level={matches ? 3 : 1}
             >
@@ -108,7 +110,7 @@ export default function NavBar() {
                 title={
                   <Typography.Title
                     level={4}
-                    style={{ fontWeight: 1000, color: "#f857a6", margin: 0 }}
+                    style={{ fontWeight: Fonts.weights.bold, color: Colors.primary, margin: 0 }}
                   >
                     Menu
                   </Typography.Title>
@@ -130,7 +132,7 @@ export default function NavBar() {
                 >
                   {user && user.email ? (
                     <>
-                      <span style={{ color: "#f857a6", fontWeight: 1000 }}>
+                      <span style={{ color: Colors.primary, fontWeight: Fonts.weights.bold }}>
                         {user.email}
                       </span>
                       <RootMenu
@@ -160,7 +162,7 @@ export default function NavBar() {
             <>
               {!matches && (
                 <>
-                  <span style={{ color: "white", fontWeight: 1000 }}>
+                  <span style={{ color: "white", fontWeight: Fonts.weights.bold }}>
                     {user.email}
                   </span>
                   <Button

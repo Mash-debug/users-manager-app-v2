@@ -6,6 +6,8 @@ import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import DeleteAccountModal from "../components/DeleteAccountModal";
 import { useMediaQuery } from "usehooks-ts";
+import { Colors } from "../constants/colors.js";
+import { Fonts } from "../constants/fonts.js";
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -119,7 +121,7 @@ export default function AccountPage() {
         <Divider orientation="left">
           <Typography.Title
             level={2}
-            style={{ fontWeight: 1000, color: "#f857a6" }}
+            style={{ fontWeight: Fonts.weights.bold, color: Colors.primary }}
           >
             Compte
           </Typography.Title>

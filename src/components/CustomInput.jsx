@@ -1,4 +1,5 @@
 import { Input, ConfigProvider } from "antd";
+import { Colors } from "../constants/colors.js";
 
 // eslint-disable-next-line react/prop-types
 export default function CustomInput({password, ...props}) {
@@ -7,8 +8,8 @@ export default function CustomInput({password, ...props}) {
       theme={{
         components: {
           Input: {
-            activeBorderColor: "#f857a6",
-            hoverBorderColor: "#f857a6",
+            activeBorderColor: Colors.primary,
+            hoverBorderColor: Colors.primary,
           },
         },
       }}

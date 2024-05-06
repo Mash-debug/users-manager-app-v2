@@ -1,9 +1,11 @@
 import { Form, Flex } from "antd";
 import CustomInput from "./CustomInput";
 import Button from "./Button";
+import { Strings } from "../constants/strings.js";
 
-// eslint-disable-next-line react/prop-types
+
 export default function CustomForm({
+  name,
   onFinish,
   fields = [],
   btnMessage = "Valider",
@@ -33,14 +35,14 @@ export default function CustomForm({
     >
       {(!fields.length || fields.includes("name")) && (
         <Form.Item
-          label="Nom"
+          label={Strings.form.name.label}
           name="name"
           rules={[
-            { required: true, message: "Veuillez saisir votre nom." },
-            { whitespace: true, message: "Le champ est vide." },
+            { required: true, message: Strings.form.name.missing },
+            { whitespace: true, message: Strings.form.fieldEmpty },
             {
               max: 20,
-              message: "Le prénom doit faire moins de 20 caractères.",
+              message: Strings.form.name.tooLong,
             },
           ]}
           hasFeedback
@@ -50,14 +52,14 @@ export default function CustomForm({
       )}
       {(!fields.length || fields.includes("firstname")) && (
         <Form.Item
-          label="Prénom"
+          label={Strings.form.firstname.label}
           name="firstname"
           rules={[
-            { required: true, message: "Veuillez saisir votre prénom." },
-            { whitespace: true, message: "Le champ est vide." },
+            { required: true, message: Strings.form.firstname.missing },
+            { whitespace: true, message: Strings.form.fieldEmpty },
             {
               max: 20,
-              message: "Le prénom doit faire moins de 20 caractères.",
+              message: Strings.form.firstname.tooLong,
             },
           ]}
           hasFeedback
@@ -67,15 +69,15 @@ export default function CustomForm({
       )}
       {(!fields.length || fields.includes("email")) && (
         <Form.Item
-          label="E-mail"
+          label={Strings.form.mail.label}
           name="email"
           rules={[
             {
               type: "email",
-              message: "Veuillez saisir une adresse email valide.",
+              message: Strings.form.mail.invalid,
             },
-            { required: true, message: "Veuillez saisir votre email." },
-            { whitespace: true, message: "Le champ est vide." },
+            { required: true, message: Strings.form.mail.missing },
+            { whitespace: true, message: Strings.form.fieldEmpty },
           ]}
           hasFeedback
         >
@@ -84,11 +86,11 @@ export default function CustomForm({
       )}
       {(!fields.length || fields.includes("password")) && (
         <Form.Item
-          label="Mot de passe"
+          label={Strings.form.password.label}
           name="password"
           rules={[
-            { required: true, message: "Veuillez saisir votre mot de passe." },
-            { whitespace: true, message: "Le champ est vide." },
+            { required: true, message: Strings.form.password.missing },
+            { whitespace: true, message: Strings.form.fieldEmpty },
           ]}
           hasFeedback
         >
@@ -97,21 +99,21 @@ export default function CustomForm({
       )}
       {(!fields.length || fields.includes("confirmPassword")) && (
         <Form.Item
-          label="Confirmation du mot de passe"
+          label={Strings.form.confirmPassword.label}
           name="passwordConfirm"
           rules={[
             {
               required: true,
-              message: "Veuillez confirmer votre mot de passe.",
+              message: Strings.form.confirmPassword.missing,
             },
-            { whitespace: true, message: "Le champ est vide." },
+            { whitespace: true, message: Strings.form.fieldEmpty },
             {
               validator: (_, value) => {
                 if (form.getFieldValue("password") === value) {
                   return Promise.resolve();
                 } else {
                   return Promise.reject(
-                    "Les deux mots de passe ne correspondent pas"
+                    Strings.form.passwordsNotMatch
                   );
                 }
               },

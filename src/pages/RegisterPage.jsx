@@ -4,6 +4,8 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { Colors } from "../constants/colors.js";
+import { Fonts } from "../constants/fonts.js";
 
 export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -57,9 +59,9 @@ export default function RegisterPage() {
           level={2}
           style={{
             textAlign: "center",
-            color: "#f857a6",
+            color: Colors.primary,
             margin: 0,
-            fontWeight: 1000,
+            fontWeight: Fonts.weights.bold,
           }}
         >
           Inscription
@@ -71,12 +73,12 @@ export default function RegisterPage() {
           style={{ width: "fit-content", margin: "auto" }}
         >
           <CustomForm onFinish={handleFinish} isLoading={isLoading} />
-          <span style={{ color: "#f857a6", marginTop: 8 }}>
+          <span style={{ color: Colors.primary, marginTop: 8 }}>
             Vous avez déjà un compte ?{" "}
             <Link
               to="/login"
               className="hover-underline"
-              style={{ fontWeight: 1000, color: "inherit" }}
+              style={{ fontWeight: Fonts.weights.bold, color: "inherit" }}
             >
               Se connecter
             </Link>

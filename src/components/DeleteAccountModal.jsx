@@ -1,6 +1,8 @@
 import { Modal, Typography } from "antd";
 import { useState } from "react";
 import Button from "./Button";
+import { Colors } from "../constants/colors.js";
+import { Fonts } from "../constants/fonts.js";
 
 
 // eslint-disable-next-line react/prop-types
@@ -24,13 +26,13 @@ export default function DeleteAccountModal({onDeleteAccount}) {
     <>
       <Button
         onClick={handleClick}
-        style={{ minWidth: 300, backgroundColor: "white", color: "#f857a6" }}
+        style={{ minWidth: 300, backgroundColor: "white", color: Colors.primary }}
       >
         Supprimer le compte
       </Button>
       <Modal
         title={
-          <Typography.Title level={4} style={{fontWeight: 1000, color: "#f857a6"}}>Supprimer le compte</Typography.Title>
+          <Typography.Title level={4} style={{fontWeight: Fonts.weights.bold, color: Colors.primary}}>Supprimer le compte</Typography.Title>
         }
         open={isOpen}
         footer={[
@@ -39,7 +41,7 @@ export default function DeleteAccountModal({onDeleteAccount}) {
         ]}
         onCancel={handleCancel}
       >
-        <p style={{ fontWeight: 1000 }}>
+        <p style={{ fontWeight: Fonts.weights.bold }}>
           Etes-vous certain de supprimer votre compte ?
         </p>
       </Modal>
