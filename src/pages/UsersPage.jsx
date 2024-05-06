@@ -5,6 +5,8 @@ import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
+import { Paths } from "../constants/paths.js";
+import { Strings } from "../constants/strings.js";
 
 export default function UsersPage() {
   const gutter = { xs: 8, sm: 16, md: 24, lg: 32 };
@@ -27,7 +29,7 @@ export default function UsersPage() {
         }
       } catch {
         setUser(null);
-        navigate("/login");
+        navigate(Paths.login);
       }
     }
     getAccount();
@@ -62,7 +64,7 @@ export default function UsersPage() {
             level={2}
             style={{ fontWeight: Fonts.weights.bold, color: Colors.primary }}
           >
-            Utilisateurs
+            {Strings.menu.items.users.label}
           </Typography.Title>
         </Divider>
       </Flex>
@@ -70,7 +72,7 @@ export default function UsersPage() {
         {users.map((u) => {
           return (
             <Col key={u.id} xs={24} sm={24} md={24} lg={8}>
-              <Card title={u._id} styles={{header: {backgroundColor: Colors.primary, color: "white"}}}>
+              <Card title={u._id} styles={{header: {backgroundColor: Colors.primary, color: Colors.white}}}>
                 <p style={{fontWeight: Fonts.weights.bold}}>{u.name}</p>
                 <p>{u.firstname}</p>
               </Card>
