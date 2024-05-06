@@ -8,6 +8,8 @@ import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
 import { Paths } from "../constants/paths.js";
 import { Strings } from "../constants/strings.js";
+import getAccount from "../utils/getAccount.js";
+import register from "../utils/register.js";
 
 export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,41 +18,12 @@ export default function RegisterPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function getAccount() {
-      try {
-        const res = await axios.get("http://localhost:5000/account", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        });
-
-        if (res.status === 200) {
-          setUser({ ...res.data.user });
-          navigate(Paths.account);
-        }
-      } catch {
-        setUser(null);
-      }
-    }
-    getAccount();
+    getAccount(navigate, setUser, Paths.register);
   }, [navigate, setUser]);
 
   const handleFinish = async (user) => {
     setIsLoading(true);
-
-    try {
-      const res = await axios.post("http://localhost:5000/register", user, {
-        withCredentials: true,
-      });
-
-      if (res.data.success && res.data.isAuth) {
-        navigate(res.data.redirect);
-      }
-    } catch (e) {
-      setErrorMessage(e.response.data.errorMessage);
-    }
-
+    await register(navigate, setErrorMessage, user);
     setIsLoading(false);
   };
 

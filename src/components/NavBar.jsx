@@ -4,9 +4,9 @@ import Button from "./Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
-import axios from "axios";
 import { useMediaQuery } from "usehooks-ts";
 import RootMenu from "./RootMenu";
+import logout from "../utils/logout.js";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
 import { Paths } from "../constants/paths.js";
@@ -19,17 +19,7 @@ export default function NavBar() {
   const [isOpenedDrawer, setIsOpenedDrawer] = useState(false);
 
   const handleLogout = async () => {
-    const res = await axios.get("http://localhost:5000/logout", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    });
-
-    if (res.status === 200 && res.data.success) {
-      setUser(null);
-      navigate(res.data.redirect);
-    }
+   await logout(navigate, setUser);
   };
 
   const handleOpenDrawer = () => {

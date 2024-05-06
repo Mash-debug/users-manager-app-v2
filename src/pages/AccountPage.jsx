@@ -8,8 +8,11 @@ import DeleteAccountModal from "../components/DeleteAccountModal";
 import { useMediaQuery } from "usehooks-ts";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
-import { Paths } from "../constants/paths.js";
 import { Strings } from "../constants/strings.js";
+import getAccount from "../utils/getAccount.js";
+import editUser from "../utils/editUser.js";
+import editPassword from "../utils/editPassword.js";
+import deleteUser from "../utils/deleteUser.js";
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -27,24 +30,7 @@ export default function AccountPage() {
   const [isLoadingPassword, setIsLoadingPassword] = useState(false);
 
   useEffect(() => {
-    async function getAccount() {
-      try {
-        const res = await axios.get("http://localhost:5000/account", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        });
-
-        if (res.status === 200) {
-          setUser({ ...res.data.user });
-        }
-      } catch {
-        setUser(null);
-        navigate(Paths.login);
-      }
-    }
-    getAccount();
+    getAccount(navigate, setUser);
   }, [navigate, setUser]);
 
   const handleInfoChange = async (info) => {
@@ -52,22 +38,7 @@ export default function AccountPage() {
     setSuccessMessage({});
     setIsLoadingInfo(true);
 
-    const payload = { email: user.email, ...info };
-
-    try {
-      const res = await axios.patch("http://localhost:5000/edit", payload, {
-        withCredentials: true,
-      });
-
-      if (res.data.success) {
-        setUser({ ...user, ...info });
-        setSuccessMessage({
-          infos: Strings.form.infoSuccessUpdate,
-        });
-      }
-    } catch (e) {
-      setErrorMessage({ infos: e.response.data.errorMessage });
-    }
+    await editUser(info, user, setUser, setSuccessMessage, setErrorMessage);
 
     setIsLoadingInfo(false);
   };
@@ -77,24 +48,7 @@ export default function AccountPage() {
     setSuccessMessage({});
     setIsLoadingPassword(true);
 
-    const payload = { email: user.email, ...info };
-
-    try {
-      const res = await axios.patch("http://localhost:5000/edit", payload, {
-        withCredentials: true,
-      });
-
-      if (res.data.success) {
-        setSuccessMessage({
-          password: Strings.form.password.successUpdate,
-        });
-      }
-    } catch (e) {
-      setErrorMessage({
-        password: e.response.data.errorMessage,
-      });
-    }
-
+    await editPassword(info, user, setSuccessMessage, setErrorMessage);
     setIsLoadingPassword(false);
   };
 
@@ -102,19 +56,7 @@ export default function AccountPage() {
     setErrorMessage({});
     setSuccessMessage({});
 
-    try {
-      const res = await axios.delete("http://localhost:5000/users", {
-        withCredentials: true,
-        data: { email: user.email },
-      });
-
-      if (res.data.success) {
-        setUser(null);
-        navigate(res.data.redirect);
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    await deleteUser(navigate, setUser, user);
   };
 
   return (

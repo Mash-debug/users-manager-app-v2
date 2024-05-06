@@ -5,8 +5,9 @@ import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
-import { Paths } from "../constants/paths.js";
 import { Strings } from "../constants/strings.js";
+import getAccount from "../utils/getAccount.js";
+import fetchUsers from "../utils/fetchUsers.js";
 
 export default function UsersPage() {
   const gutter = { xs: 8, sm: 16, md: 24, lg: 32 };
@@ -15,45 +16,11 @@ export default function UsersPage() {
   const { setUser } = useContext(UserContext);
 
   useEffect(() => {
-    async function getAccount() {
-      try {
-        const res = await axios.get("http://localhost:5000/account", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        });
-
-        if (res.status === 200) {
-          setUser({ ...res.data.user });
-        }
-      } catch {
-        setUser(null);
-        navigate(Paths.login);
-      }
-    }
-    getAccount();
+    getAccount(navigate, setUser);
   }, [navigate, setUser]);
 
   useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const res = await axios.get("http://localhost:5000/users", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        });
-
-        if (res.status === 200) {
-          setUsers(res.data.users);
-        }
-      } catch {
-        setUsers([]);
-      }
-    }
-
-    fetchUsers();
+    fetchUsers(setUsers);
   }, []);
 
   return (
