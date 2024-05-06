@@ -1,7 +1,7 @@
 import { Typography, Flex } from "antd";
 import CustomForm from "../components/CustomForm";
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
 
@@ -55,7 +55,7 @@ export default function LoginPage() {
       <div style={{ padding: 32 }}>
         <Typography.Title
           level={2}
-          style={{ textAlign: "center", color: "#f857a6", margin: 0 }}
+          style={{ textAlign: "center", color: "#f857a6", margin: 0, fontWeight: 1000 }}
         >
           Connexion
         </Typography.Title>
@@ -66,6 +66,7 @@ export default function LoginPage() {
             btnMessage="Se connecter"
             isLoading={isLoading}
           />
+          <span style={{color: "#f857a6", marginTop: 8}}>Pas encore de compte ? <Link to="/register" className="hover-underline" style={{fontWeight: 1000, color: "inherit"}}>S{"'"}inscrire</Link></span>
           <span style={{color: "#FF4D4F", marginTop: 8}}>{errorMessage ? errorMessage : null}</span>
         </Flex>
       </div>

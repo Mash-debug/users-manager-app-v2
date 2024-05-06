@@ -5,9 +5,11 @@ import { useEffect, useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import DeleteAccountModal from "../components/DeleteAccountModal";
+import { useMediaQuery } from "usehooks-ts";
 
 export default function AccountPage() {
   const navigate = useNavigate();
+  const matchesMd = useMediaQuery("(max-width: 850px)");
   const { user, setUser } = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState({
     infos: "",
@@ -123,7 +125,7 @@ export default function AccountPage() {
           </Typography.Title>
         </Divider>
       </Flex>
-      <Flex justify="space-evenly">
+      <Flex justify="space-evenly" vertical={matchesMd}>
         {user && user.name && user.firstname ? (
           <>
             <Flex vertical>
@@ -133,6 +135,7 @@ export default function AccountPage() {
                 btnMessage="Modifier le nom/prénom"
                 initialValues={{ name: user.name, firstname: user.firstname }}
                 isLoading={isLoadingInfo}
+                centerBtn={true}
               />
               {successMessage.infos && (
                 <span style={{ color: "green", marginTop: 8 }}>
@@ -145,12 +148,14 @@ export default function AccountPage() {
                 </span>
               )}
             </Flex>
-            <Flex vertical align="center">
+            <br /><br />
+            <Flex vertical>
               <CustomForm
                 onFinish={handlePasswordChange}
                 fields={["password", "confirmPassword"]}
                 btnMessage="Modifier le mot de passe"
                 isLoading={isLoadingPassword}
+                centerBtn={true}
               />
               {successMessage.password && (
                 <span style={{ color: "green", marginTop: 8 }}>

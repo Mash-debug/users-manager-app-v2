@@ -1,11 +1,18 @@
-import { Form } from "antd";
+import { Form, Flex } from "antd";
 import CustomInput from "./CustomInput";
 import Button from "./Button";
 
-
 // eslint-disable-next-line react/prop-types
-export default function CustomForm({ onFinish, fields = [], btnMessage = "Valider", isLoading = false, initialValues = {} }) {
-  
+export default function CustomForm({
+  onFinish,
+  fields = [],
+  btnMessage = "Valider",
+  isLoading = false,
+  initialValues = {},
+  btnStyle = {},
+  formStyle = {},
+  centerBtn = false
+}) {
   const [form] = Form.useForm();
 
   const handleFinish = (values) => {
@@ -15,12 +22,13 @@ export default function CustomForm({ onFinish, fields = [], btnMessage = "Valide
   return (
     <Form
       form={form}
+      style={{ ...formStyle }}
       onFinish={handleFinish}
       name={name}
       layout="vertical"
       initialValues={{
         remember: true,
-        ...initialValues
+        ...initialValues,
       }}
     >
       {(!fields.length || fields.includes("name")) && (
@@ -115,9 +123,15 @@ export default function CustomForm({ onFinish, fields = [], btnMessage = "Valide
           <CustomInput password />
         </Form.Item>
       )}
-      <Button htmlType="submit" style={{ minWidth: 300 }} loading={isLoading}>
-        {btnMessage}
-      </Button>
+      <Flex justify={centerBtn && "center"}>
+        <Button
+          htmlType="submit"
+          style={{ minWidth: 300, ...btnStyle }}
+          loading={isLoading}
+        >
+          {btnMessage}
+        </Button>
+      </Flex>
     </Form>
   );
 }

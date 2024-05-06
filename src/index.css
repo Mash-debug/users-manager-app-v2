@@ -11,3 +11,8 @@ body {
 .hamburger:hover {
     cursor: pointer;
 }
+
+.hover-underline:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}

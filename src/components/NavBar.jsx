@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import { useMediaQuery } from "usehooks-ts";
+import RootMenu from "./RootMenu";
 
 export default function NavBar() {
   const matches = useMediaQuery("(max-width: 850px");
@@ -125,9 +126,30 @@ export default function NavBar() {
                 <Space
                   direction="vertical"
                   size="large"
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", textAlign: "center" }}
                 >
-                  {buttonsNav}
+                  {user && user.email ? (
+                    <>
+                      <span style={{ color: "#f857a6", fontWeight: 1000 }}>
+                        {user.email}
+                      </span>
+                      <RootMenu
+                        style={{ width: "100%", borderWidth: 0 }}
+                        closeDrawer={handleCloseDrawer}
+                      />
+                      <Button
+                        onClick={handleLogout}
+                        style={{
+                          boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+                          width: "100%",
+                        }}
+                      >
+                        Se déconnecter
+                      </Button>
+                    </>
+                  ) : (
+                    buttonsNav
+                  )}
                 </Space>
               </Drawer>
             </>
@@ -136,17 +158,21 @@ export default function NavBar() {
         <Space size="middle">
           {user && user.email ? (
             <>
-              <span style={{ color: "white", fontWeight: 1000 }}>
-                {user.email}
-              </span>
-              <Button
-                onClick={handleLogout}
-                style={{
-                  boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
-                }}
-              >
-                Se déconnecter
-              </Button>
+              {!matches && (
+                <>
+                  <span style={{ color: "white", fontWeight: 1000 }}>
+                    {user.email}
+                  </span>
+                  <Button
+                    onClick={handleLogout}
+                    style={{
+                      boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+                    }}
+                  >
+                    Se déconnecter
+                  </Button>
+                </>
+              )}
             </>
           ) : (
             <>{matches ? null : buttonsNav}</>

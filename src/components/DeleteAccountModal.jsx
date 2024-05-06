@@ -37,6 +37,7 @@ export default function DeleteAccountModal({onDeleteAccount}) {
             <Button key="cancel" onClick={handleCancel}>Annuler</Button>,
             <Button key="confirm" onClick={handleOk}>Supprimer le compte</Button>
         ]}
+        onCancel={handleCancel}
       >
         <p style={{ fontWeight: 1000 }}>
           Etes-vous certain de supprimer votre compte ?
