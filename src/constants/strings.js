@@ -1,6 +1,16 @@
 export const Strings = {
     appName: "Users Manager App",
-    menuTitle: "Menu",
+    menu: {
+        title: "Menu",
+        items: {
+            account: {
+                label: "Compte"
+            },
+            users: {
+                label: "Utilisateurs"
+            }
+        }
+    },
     form: {
         name: {
             label: "Nom",

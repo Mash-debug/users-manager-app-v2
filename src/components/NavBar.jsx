@@ -114,7 +114,7 @@ export default function NavBar() {
                     level={4}
                     style={{ fontWeight: Fonts.weights.bold, color: Colors.primary, margin: 0 }}
                   >
-                    {Strings.menuTitle}
+                    {Strings.menu.title}
                   </Typography.Title>
                 }
                 onClose={handleCloseDrawer}
