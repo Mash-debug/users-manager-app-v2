@@ -5,12 +5,10 @@ import { useMediaQuery } from "usehooks-ts";
 
 function LandingPage() {
   const matchesMd = useMediaQuery("(max-width: 750px)");
-   
 
   return (
     <>
-      <Flex justify="flex-start" vertical>
-        <div id="form"></div>
+      <Flex justify="flex-start" vertical style={{ minHeight: "100vh" }}>
         <Typography.Title
           style={{
             margin: 0,
@@ -28,23 +26,31 @@ function LandingPage() {
           vertical={matchesMd}
           align="center"
           justify="space-around"
-          style={{ height: "fit-content", padding: matchesMd ? 0 : 32 }}
+          style={{
+            height: "fit-content",
+            padding: matchesMd ? 0 : 32,
+            flexGrow: 1,
+          }}
         >
           <Typography.Text
             style={{
-              width: "50%",
+              width: matchesMd ? "80%" : "50%",
               textAlign: "justify",
               fontSize: "1.1rem",
               fontWeight: 600,
               color: "#f857a6",
             }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, rem
-            in magni eaque pariatur quam accusantium totam mollitia dolore.
-            Saepe eius eos quia sunt possimus est, nihil dignissimos rem
-            repellendus!
+            Que vous soyez une petite entreprise ou une grande organisation,
+            notre solution vous offre les outils nécessaires pour simplifier la
+            gestion de vos utilisateurs, garantir leur sécurité et optimiser
+            leur expérience.
           </Typography.Text>
-          <img src={usersManagerPhoto} width={matchesMd ? "50%" : "25%" } style={{}} alt="User" />
+          <img
+            src={usersManagerPhoto}
+            width={matchesMd ? "50%" : "25%"}
+            alt="User"
+          />
         </Flex>
         <Flex
           vertical={matchesMd}
@@ -56,20 +62,25 @@ function LandingPage() {
             padding: 32,
           }}
         >
-          <img src={featuresUser} width={matchesMd ? "50%" : "25%" } style={{paddingBottom: matchesMd && 16}} alt="User" />
+          <img
+            src={featuresUser}
+            width={matchesMd ? "50%" : "25%"}
+            style={{ paddingBottom: matchesMd && 16 }}
+            alt="User"
+          />
           <Typography.Text
             style={{
-              width: "50%",
+              width: matchesMd ? "80%" : "50%",
               textAlign: "justify",
               fontSize: "1.1rem",
               fontWeight: 600,
               color: "white",
             }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, rem
-            in magni eaque pariatur quam accusantium totam mollitia dolore.
-            Saepe eius eos quia sunt possimus est, nihil dignissimos rem
-            repellendus!
+            Notre plateforme de gestion d{"'"}utilisateurs a été conçue pour
+            simplifier vos processus administratifs, vous permettant ainsi de
+            vous concentrer sur ce qui compte vraiment : faire croître votre
+            entreprise.
           </Typography.Text>
         </Flex>
       </Flex>

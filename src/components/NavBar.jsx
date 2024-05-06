@@ -97,6 +97,7 @@ export default function NavBar() {
           {matches && (
             <>
               <div
+                className="hamburger"
                 onClick={handleOpenDrawer}
                 style={{ color: "white", fontSize: "1.6rem" }}
               >

@@ -8,3 +8,6 @@ body {
     margin: 0;
 }
 
+.hamburger:hover {
+    cursor: pointer;
+}
