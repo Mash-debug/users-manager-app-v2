@@ -30,6 +30,7 @@ export const Strings = {
         password: {
             label: "Mot de passe",
             missing: "Veuillez saisir votre mot de passe.",
+            successUpdate: "Votre mot de passe a bien été modifié !"
         },
         confirmPassword: {
             label: "Confirmation du mot de passe",
@@ -37,6 +38,7 @@ export const Strings = {
         },
         fieldEmpty: "Le champ est vide.",
         passwordsNotMatch: "Les deux mots de passe ne correspondent pas",
+        infoSuccessUpdate: "Vos informations ont bien été mises à jour !"
     },
     buttons: {
         deleteAccount: "Supprimer le compte",
@@ -45,5 +47,7 @@ export const Strings = {
         login: "Connexion",
         logout: "Se déconnecter",
         register: "Inscription",
+        infoUpdate: "Modifier le nom/prénom",
+        passwordUpdate: "Modifier le mot de passe"
     }
 }

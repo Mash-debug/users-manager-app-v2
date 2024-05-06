@@ -8,6 +8,8 @@ import DeleteAccountModal from "../components/DeleteAccountModal";
 import { useMediaQuery } from "usehooks-ts";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
+import { Paths } from "../constants/paths.js";
+import { Strings } from "../constants/strings.js";
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ export default function AccountPage() {
         }
       } catch {
         setUser(null);
-        navigate("/login");
+        navigate(Paths.login);
       }
     }
     getAccount();
@@ -60,7 +62,7 @@ export default function AccountPage() {
       if (res.data.success) {
         setUser({ ...user, ...info });
         setSuccessMessage({
-          infos: "Vos informations ont bien été mises à jour !",
+          infos: Strings.form.infoSuccessUpdate,
         });
       }
     } catch (e) {
@@ -84,7 +86,7 @@ export default function AccountPage() {
 
       if (res.data.success) {
         setSuccessMessage({
-          password: "Votre mot de passe a bien été modifié !",
+          password: Strings.form.password.successUpdate,
         });
       }
     } catch (e) {
@@ -103,7 +105,7 @@ export default function AccountPage() {
     try {
       const res = await axios.delete("http://localhost:5000/users", {
         withCredentials: true,
-        data: {email: user.email}
+        data: { email: user.email },
       });
 
       if (res.data.success) {
@@ -113,7 +115,7 @@ export default function AccountPage() {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   return (
     <div style={{ padding: 16, width: "100%" }}>
@@ -123,7 +125,7 @@ export default function AccountPage() {
             level={2}
             style={{ fontWeight: Fonts.weights.bold, color: Colors.primary }}
           >
-            Compte
+            {Strings.menu.items.account.label}
           </Typography.Title>
         </Divider>
       </Flex>
@@ -134,38 +136,39 @@ export default function AccountPage() {
               <CustomForm
                 onFinish={handleInfoChange}
                 fields={["name", "firstname"]}
-                btnMessage="Modifier le nom/prénom"
+                btnMessage={Strings.buttons.infoUpdate}
                 initialValues={{ name: user.name, firstname: user.firstname }}
                 isLoading={isLoadingInfo}
                 centerBtn={true}
               />
               {successMessage.infos && (
-                <span style={{ color: "green", marginTop: 8 }}>
+                <span style={{ color: Colors.success, marginTop: 8 }}>
                   {successMessage.infos}
                 </span>
               )}
               {errorMessage.infos && (
-                <span style={{ color: "#ff4d4f", marginTop: 8 }}>
+                <span style={{ color: Colors.error, marginTop: 8 }}>
                   {errorMessage.infos}
                 </span>
               )}
             </Flex>
-            <br /><br />
+            <br />
+            <br />
             <Flex vertical>
               <CustomForm
                 onFinish={handlePasswordChange}
                 fields={["password", "confirmPassword"]}
-                btnMessage="Modifier le mot de passe"
+                btnMessage={Strings.buttons.passwordUpdate}
                 isLoading={isLoadingPassword}
                 centerBtn={true}
               />
               {successMessage.password && (
-                <span style={{ color: "green", marginTop: 8 }}>
+                <span style={{ color: Colors.success, marginTop: 8 }}>
                   {successMessage.password}
                 </span>
               )}
               {errorMessage.password && (
-                <span style={{ color: "#ff4d4f", marginTop: 8 }}>
+                <span style={{ color: Colors.error, marginTop: 8 }}>
                   {errorMessage.password}
                 </span>
               )}
@@ -173,10 +176,9 @@ export default function AccountPage() {
           </>
         ) : null}
       </Flex>
-      <Flex justify="center" style={{marginTop: 64}}>
+      <Flex justify="center" style={{ marginTop: 64 }}>
         <DeleteAccountModal onDeleteAccount={handleDeleteAccount} />
       </Flex>
-      
     </div>
   );
 }
