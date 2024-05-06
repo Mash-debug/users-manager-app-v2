@@ -1,5 +1,18 @@
 export const Strings = {
     appName: "Users Manager App",
+    landingPage: {
+        title: "Gérez vos utilisateurs rapidement et efficacement.",
+        paragraphs: {
+            "1": `Que vous soyez une petite entreprise ou une grande organisation,
+            notre solution vous offre les outils nécessaires pour simplifier la
+            gestion de vos utilisateurs, garantir leur sécurité et optimiser
+            leur expérience.`,
+            "2": `Notre plateforme de gestion d'utilisateurs a été conçue pour
+            simplifier vos processus administratifs, vous permettant ainsi de
+            vous concentrer sur ce qui compte vraiment : faire croître votre
+            entreprise.`
+        }
+    },
     menu: {
         title: "Menu",
         items: {

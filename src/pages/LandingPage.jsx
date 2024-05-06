@@ -4,6 +4,7 @@ import featuresUser from "../assets/features-user.svg";
 import { useMediaQuery } from "usehooks-ts";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
+import { Strings } from "../constants/strings.js";
 
 function LandingPage() {
   const matchesMd = useMediaQuery("(max-width: 750px)");
@@ -21,9 +22,8 @@ function LandingPage() {
           }}
           level={2}
         >
-          Gérez vos utilisateurs rapidement et efficacement.
+          {Strings.landingPage.title}
         </Typography.Title>
-        {/* <CustomForm name="login" onFinish={(values) => console.log(values)} /> */}
         <Flex
           vertical={matchesMd}
           align="center"
@@ -39,14 +39,11 @@ function LandingPage() {
               width: matchesMd ? "80%" : "50%",
               textAlign: "justify",
               fontSize: "1.1rem",
-              fontWeight: 600,
+              fontWeight: Fonts.weights.semiBold,
               color: Colors.primary,
             }}
           >
-            Que vous soyez une petite entreprise ou une grande organisation,
-            notre solution vous offre les outils nécessaires pour simplifier la
-            gestion de vos utilisateurs, garantir leur sécurité et optimiser
-            leur expérience.
+           {Strings.landingPage.paragraphs["1"]}
           </Typography.Text>
           <img
             src={usersManagerPhoto}
@@ -75,14 +72,11 @@ function LandingPage() {
               width: matchesMd ? "80%" : "50%",
               textAlign: "justify",
               fontSize: "1.1rem",
-              fontWeight: 600,
-              color: "white",
+              fontWeight: Fonts.weights.semiBold,
+              color: Colors.white,
             }}
           >
-            Notre plateforme de gestion d{"'"}utilisateurs a été conçue pour
-            simplifier vos processus administratifs, vous permettant ainsi de
-            vous concentrer sur ce qui compte vraiment : faire croître votre
-            entreprise.
+            {Strings.landingPage.paragraphs["2"]}
           </Typography.Text>
         </Flex>
       </Flex>
