@@ -7,10 +7,11 @@ import RootLayout from "./layouts/RootLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BaseLayout from "./layouts/BaseLayout";
 import UserContextProvider from "./contexts/UserContext";
+import { Paths } from "./constants/paths";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: Paths.root,
     Component: BaseLayout,
     children: [
       {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
+    path: Paths.login,
     Component: BaseLayout,
     children: [
       {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/register",
+    path: Paths.register,
     Component: BaseLayout,
     children: [
       {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
+    path: Paths.dashboard,
     Component: RootLayout,
     children: [
       {
