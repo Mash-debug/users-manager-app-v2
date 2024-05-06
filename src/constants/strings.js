@@ -17,6 +17,10 @@ export const Strings = {
         title: "Connexion",
         noAccount: "Pas encore de compte ?",
     },
+    registerPage: {
+        title: "Inscription",
+        hasAccount: "Vous avez déjà un compte ?"
+    },
     menu: {
         title: "Menu",
         items: {

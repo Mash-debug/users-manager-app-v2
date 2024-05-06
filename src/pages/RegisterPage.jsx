@@ -6,6 +6,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
+import { Paths } from "../constants/paths.js";
+import { Strings } from "../constants/strings.js";
 
 export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +27,7 @@ export default function RegisterPage() {
 
         if (res.status === 200) {
           setUser({ ...res.data.user });
-          navigate("/dashboard/account");
+          navigate(Paths.account);
         }
       } catch {
         setUser(null);
@@ -64,7 +66,7 @@ export default function RegisterPage() {
             fontWeight: Fonts.weights.bold,
           }}
         >
-          Inscription
+          {Strings.registerPage.title}
         </Typography.Title>
         <Flex
           justify="center"
@@ -74,17 +76,17 @@ export default function RegisterPage() {
         >
           <CustomForm onFinish={handleFinish} isLoading={isLoading} />
           <span style={{ color: Colors.primary, marginTop: 8 }}>
-            Vous avez déjà un compte ?{" "}
+            {Strings.registerPage.hasAccount}{" "}
             <Link
-              to="/login"
+              to={Paths.login}
               className="hover-underline"
-              style={{ fontWeight: Fonts.weights.bold, color: "inherit" }}
+              style={{ fontWeight: Fonts.weights.bold, color: Colors.primary }}
             >
-              Se connecter
+              {Strings.buttons.loginAlt}
             </Link>
           </span>
           {errorMessage && (
-            <span style={{ color: "#ff4d4f", marginTop: 8 }}>
+            <span style={{ color: Colors.error, marginTop: 8 }}>
               {errorMessage}
             </span>
           )}
