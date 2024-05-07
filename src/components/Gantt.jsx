@@ -1,16 +1,22 @@
 import React, { Component } from "react";
 import { gantt } from "dhtmlx-gantt";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
-
+import { Strings } from "../constants/strings";
 
 export default class Gantt extends Component {
   componentDidMount() {
     gantt.config.date_format = "%Y-%m-%d %H:%i";
+    gantt.config.columns = [
+      { name: "text", label: Strings.gantt.task.text, width: 245, tree: true },
+      { name: "start_date", label: Strings.gantt.task.startDate, align: "center" },
+      { name: "duration", label: Strings.gantt.task.duration, align: "center" },
+      { name: "add", label: "", width: 44 },
+    ];
     gantt.config.layout = {
       css: "gantt_container",
       cols: [
         {
-          width: 335,
+          width: 450,
           rows: [
             {
               cols: [
@@ -52,7 +58,6 @@ export default class Gantt extends Component {
         },
       ],
     };
-
 
     this.initGanttDataProcessor();
     const { tasks } = this.props;

@@ -76,4 +76,11 @@ export const Strings = {
         infoUpdate: "Modifier le nom/prénom",
         passwordUpdate: "Modifier le mot de passe"
     },
+    gantt: {
+        task: {
+            text: "Nom de la tâche",
+            startDate: "Début le",
+            duration: "Durée"
+        }
+    }
 }
