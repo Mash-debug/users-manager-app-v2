@@ -3,7 +3,7 @@ import { SolutionOutlined } from "@ant-design/icons";
 import Button from "./Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../contexts/UserContext.jsx";
 import { useMediaQuery } from "usehooks-ts";
 import RootMenu from "./RootMenu";
 import logout from "../utils/logout.js";

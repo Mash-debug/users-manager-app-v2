@@ -3,7 +3,7 @@ import CustomForm from "../components/CustomForm";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../contexts/UserContext.jsx";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
 import { Paths } from "../constants/paths.js";

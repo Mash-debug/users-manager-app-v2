@@ -1,28 +1,44 @@
 import Gantt from "../components/Gantt";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext.jsx";
+import { Paths } from "../constants/paths.js";
+import getAccount from "../utils/getAccount.js";
+import fetchTasks from "../utils/fetchTasks.js";
+import manageTasks from "../utils/manageTasks.js";
 
 export default function GanttPage() {
-  const data = {
-    data: [
-      {
-        id: 1,
-        text: "Initialisation du projet",
-        start_date: "2024-04-29",
-        duration: 1,
-        progress: 1,
-      },
-      {
-        id: 2,
-        text: "Task #2",
-        start_date: "2024-04-29",
-        duration: 3,
-        progress: 0.4,
-      },
-    ],
-    links: [{ id: 1, source: 1, target: 2, type: "0" }],
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [currentZoom, setCurrentZoom] = useState("Days");
+  const [tasks, setTasks] = useState({
+    data: [],
+    links: [],
+  });
+
+  useEffect(() => {
+    getAccount(navigate, setUser, Paths.login);
+  }, [navigate, setUser]);
+
+  useEffect(() => {
+    fetchTasks(setTasks);
+  }, []);
+
+  const handleDataUpdated = async (action, item) => {
+    await manageTasks(action, item);
   };
+
   return (
-    <div className="gantt-container" style={{width: "100%"}}>
-      <Gantt tasks={data} />
-    </div>
+    <>
+      <div className="gantt-container" style={{ width: "100%" }}>
+        <Gantt
+          tasks={tasks}
+          zoom={currentZoom}
+          onDataUpdated={(entityType, action, item, id) =>
+            handleDataUpdated(action, item)
+          }
+        />
+      </div>
+    </>
   );
 }
