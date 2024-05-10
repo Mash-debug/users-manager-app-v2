@@ -3,6 +3,7 @@ import AccountPage from "./pages/AccountPage";
 import UsersPage from "./pages/UsersPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import RootLayout from "./layouts/RootLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BaseLayout from "./layouts/BaseLayout";
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
   {
     path: Paths.root,
     Component: BaseLayout,
+    errorElement: <NotFoundPage />,
     children: [
       {
         path: "",
@@ -59,6 +61,7 @@ const router = createBrowserRouter([
       }
     ],
   },
+  
 ]);
 
 export default function App() {
