@@ -3,7 +3,6 @@ import CustomForm from "../components/CustomForm";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext.jsx";
-import axios from "axios";
 import DeleteAccountModal from "../components/DeleteAccountModal";
 import { useMediaQuery } from "usehooks-ts";
 import { Colors } from "../constants/colors.js";

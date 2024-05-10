@@ -2,7 +2,6 @@ import { Typography, Flex } from "antd";
 import CustomForm from "../components/CustomForm";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
 import { UserContext } from "../contexts/UserContext.jsx";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";

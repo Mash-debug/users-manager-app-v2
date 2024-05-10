@@ -2,7 +2,6 @@ import { Flex, Typography, Divider, Card, Row, Col } from "antd";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext.jsx";
-import axios from "axios";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
 import { Strings } from "../constants/strings.js";
