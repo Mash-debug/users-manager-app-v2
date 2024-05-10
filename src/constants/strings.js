@@ -21,6 +21,9 @@ export const Strings = {
         title: "Inscription",
         hasAccount: "Vous avez déjà un compte ?"
     },
+    notFoundPage: {
+        message: "Désolé, la page que vous essayez de visiter n'existe pas."
+    },
     menu: {
         title: "Menu",
         items: {
