@@ -3,7 +3,7 @@ import { Paths } from "../constants/paths.js";
 
 export default async function getAccount(navigate, setUser, redirect = Paths.login) {
     try {
-      const res = await axios.get("http://localhost:5000/account", {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}${Paths.api.account}`, {
         headers: {
           "Content-Type": "application/json",
         },
