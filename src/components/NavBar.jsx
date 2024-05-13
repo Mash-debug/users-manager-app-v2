@@ -1,16 +1,17 @@
-import { Flex, Typography, Space, Drawer } from "antd";
+import { Flex, Typography, Space } from "antd";
 import { SolutionOutlined } from "@ant-design/icons";
 import Button from "./Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext.jsx";
 import { useMediaQuery } from "usehooks-ts";
-import RootMenu from "./RootMenu";
 import logout from "../utils/logout.js";
 import { Colors } from "../constants/colors.js";
 import { Fonts } from "../constants/fonts.js";
 import { Paths } from "../constants/paths.js";
 import { Strings } from "../constants/strings.js";
+import { useButtonsNav } from "../hooks/useButtonsNav";
+import { CustomDrawer } from "./CustomDrawer";
 
 export default function NavBar() {
   const matches = useMediaQuery("(max-width: 850px)");
@@ -19,43 +20,12 @@ export default function NavBar() {
   const [isOpenedDrawer, setIsOpenedDrawer] = useState(false);
 
   const handleLogout = async () => {
-   await logout(navigate, setUser);
+    await logout(navigate, setUser);
   };
-
-  const handleOpenDrawer = () => {
-    setIsOpenedDrawer(true);
-  };
-
-  const handleCloseDrawer = () => {
-    setIsOpenedDrawer(false);
-  };
-
-  const buttonsNav = (
-    <>
-      <Link to={Paths.login} onClick={handleCloseDrawer}>
-        <Button
-          size="large"
-          style={{
-            boxShadow: Colors.shadow,
-            width: "100%",
-          }}
-        >
-          {Strings.buttons.login}
-        </Button>
-      </Link>
-      <Link to={Paths.register} onClick={handleCloseDrawer}>
-        <Button
-          size="large"
-          style={{
-            boxShadow: Colors.shadow,
-            width: "100%",
-          }}
-        >
-          {Strings.buttons.register}
-        </Button>
-      </Link>
-    </>
-  );
+  const toggleDrawer = () => {
+    setIsOpenedDrawer(prev => !prev);
+  }
+  const buttonsNav = useButtonsNav(toggleDrawer);
 
   return (
     <>
@@ -93,59 +63,17 @@ export default function NavBar() {
             <>
               <div
                 className="hamburger"
-                onClick={handleOpenDrawer}
+                onClick={toggleDrawer}
                 style={{ color: Colors.white, fontSize: "1.6rem" }}
               >
                 &#9776;
               </div>
-              <Drawer
-                title={
-                  <Typography.Title
-                    level={4}
-                    style={{ fontWeight: Fonts.weights.bold, color: Colors.primary, margin: 0 }}
-                  >
-                    {Strings.menu.title}
-                  </Typography.Title>
-                }
-                onClose={handleCloseDrawer}
+              <CustomDrawer
+                title={Strings.menu.title}
+                onClose={toggleDrawer}
+                onLogout={handleLogout}
                 open={isOpenedDrawer}
-                styles={{
-                  header: {
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  },
-                }}
-              >
-                <Space
-                  direction="vertical"
-                  size="large"
-                  style={{ width: "100%", textAlign: "center" }}
-                >
-                  {user && user.email ? (
-                    <>
-                      <span style={{ color: Colors.primary, fontWeight: Fonts.weights.bold }}>
-                        {user.email}
-                      </span>
-                      <RootMenu
-                        style={{ width: "100%", borderWidth: 0 }}
-                        closeDrawer={handleCloseDrawer}
-                      />
-                      <Button
-                        onClick={handleLogout}
-                        style={{
-                          boxShadow: Colors.shadow,
-                          width: "100%",
-                        }}
-                      >
-                        {Strings.buttons.logout}
-                      </Button>
-                    </>
-                  ) : (
-                    buttonsNav
-                  )}
-                </Space>
-              </Drawer>
+              />
             </>
           )}
         </Flex>
@@ -154,7 +82,12 @@ export default function NavBar() {
             <>
               {!matches && (
                 <>
-                  <span style={{ color: Colors.white, fontWeight: Fonts.weights.bold }}>
+                  <span
+                    style={{
+                      color: Colors.white,
+                      fontWeight: Fonts.weights.bold,
+                    }}
+                  >
                     {user.email}
                   </span>
                   <Button

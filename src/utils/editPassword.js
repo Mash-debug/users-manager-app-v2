@@ -2,7 +2,8 @@ import axios from "axios";
 import { Strings } from "../constants/strings.js";
 import { Paths } from "../constants/paths.js";
 
-export default async function editPassword(info, user, setSuccessMessage, setErrorMessage) {
+
+export default async function editPassword(info, user) {
     const payload = { email: user.email, ...info };
 
     try {
@@ -11,13 +12,15 @@ export default async function editPassword(info, user, setSuccessMessage, setErr
       });
 
       if (res.data.success) {
-        setSuccessMessage({
-          password: Strings.form.password.successUpdate,
-        });
+        return {
+          success: true,
+          message: Strings.form.password.successUpdate
+        }
       }
     } catch (e) {
-      setErrorMessage({
-        password: e.response.data.errorMessage,
-      });
+      return {
+        success: false,
+        message: e.response.data.errorMessage,
+      }
     }
 }

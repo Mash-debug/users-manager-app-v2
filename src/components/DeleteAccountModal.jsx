@@ -10,23 +10,26 @@ import { Strings } from "../constants/strings.js";
 export default function DeleteAccountModal({onDeleteAccount}) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOk = () => {
-    setIsOpen(false);
-    onDeleteAccount();
-  };
+  const toggle = () => {
+    setIsOpen(prev => !prev);
+  }
 
-  const handleCancel = () => {
-    setIsOpen(false);
-  };
-
-  const handleClick = () => {
-    setIsOpen(true);
-  };
+  const handleDispatch = (action) => {
+    switch(action) {
+      case 'delete':
+        toggle();
+        onDeleteAccount();
+      break;
+      default:
+        toggle();
+      break;
+    }
+  }
 
   return (
     <>
       <Button
-        onClick={handleClick}
+        onClick={() => handleDispatch()}
         style={{ minWidth: 300, backgroundColor: Colors.white, color: Colors.primary }}
       >
         {Strings.buttons.deleteAccount}
@@ -37,10 +40,10 @@ export default function DeleteAccountModal({onDeleteAccount}) {
         }
         open={isOpen}
         footer={[
-            <Button key="cancel" onClick={handleCancel}>{Strings.buttons.cancel}</Button>,
-            <Button key="confirm" onClick={handleOk}>{Strings.buttons.deleteAccount}</Button>
+            <Button key="cancel" onClick={() => handleDispatch()}>{Strings.buttons.cancel}</Button>,
+            <Button key="confirm" onClick={() => handleDispatch('delete')}>{Strings.buttons.deleteAccount}</Button>
         ]}
-        onCancel={handleCancel}
+        onCancel={() => handleDispatch()}
       >
         <p style={{ fontWeight: Fonts.weights.bold }}>
           {Strings.buttons.deleteAccountConfirm}

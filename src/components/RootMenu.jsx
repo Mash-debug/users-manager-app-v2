@@ -1,29 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { UserOutlined, TeamOutlined, BarChartOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import { Paths } from "../constants/paths.js";
-import { Strings } from "../constants/strings.js";
+import { useMenuItems } from "../hooks/useMenuItems";
 
 // eslint-disable-next-line react/prop-types
 export default function RootMenu({style, closeDrawer}) {
   const navigate = useNavigate();
-  const items = [
-    {
-      key: Paths.account,
-      label: Strings.menu.items.account.label,
-      icon: <UserOutlined />,
-    },
-    {
-      key: Paths.users,
-      label: Strings.menu.items.users.label,
-      icon: <TeamOutlined />,
-    },
-    {
-      key: Paths.gantt,
-      label: Strings.menu.items.gantt.label,
-      icon: <BarChartOutlined />
-    }
-  ];
+  const items = useMenuItems();
 
   const handleClick = ({ key }) => {
     if(closeDrawer) closeDrawer();

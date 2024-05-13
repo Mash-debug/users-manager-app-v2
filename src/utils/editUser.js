@@ -2,8 +2,7 @@ import axios from "axios";
 import { Strings } from "../constants/strings.js";
 import { Paths } from "../constants/paths.js";
 
-export default async function editUser(info, user, setUser, setSuccessMessage, setErrorMessage) {
-
+export default async function editUser(info, user, setUser) {
     const payload = { email: user.email, ...info };
 
     try {
@@ -13,11 +12,15 @@ export default async function editUser(info, user, setUser, setSuccessMessage, s
   
         if (res.data.success) {
           setUser({ ...user, ...info });
-          setSuccessMessage({
-            infos: Strings.form.infoSuccessUpdate,
-          });
+          return {
+            success: true,
+            message: Strings.form.infoSuccessUpdate
+          }
         }
     } catch (e) {
-        setErrorMessage({ infos: e.response.data.errorMessage });
+        return {
+          success: false,
+          message: e.response.data.errorMessage
+        }
     }
 }

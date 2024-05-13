@@ -1,4 +1,4 @@
-import { Typography, Flex } from "antd";
+import { Typography, Flex, App } from "antd";
 import CustomForm from "../components/CustomForm";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -13,10 +13,10 @@ import { useCustomFormFields } from "../hooks/useCustomFormFields.js";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
   const { email, password } = useCustomFormFields();
+  const { message } = App.useApp();
 
   useEffect(() => {
     getAccount(navigate, setUser);
@@ -24,9 +24,10 @@ export default function LoginPage() {
 
   const handleFinish = async (loginUser) => {
     setIsLoading(true);
-
-    await login(navigate, setErrorMessage, loginUser);
-
+    const error = await login(navigate, loginUser);
+    if(error) {
+      message.error(error);
+    }
     setIsLoading(false);
   };
 
@@ -68,9 +69,6 @@ export default function LoginPage() {
             >
               {Strings.buttons.registerAlt}
             </Link>
-          </span>
-          <span style={{ color: Colors.error, marginTop: 8 }}>
-            {errorMessage ? errorMessage : null}
           </span>
         </Flex>
       </div>

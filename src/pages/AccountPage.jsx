@@ -1,4 +1,4 @@
-import { Flex, Typography, Divider, Form } from "antd";
+import { Flex, Typography, Divider, App } from "antd";
 import CustomForm from "../components/CustomForm";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
@@ -18,45 +18,40 @@ export default function AccountPage() {
   const navigate = useNavigate();
   const matchesMd = useMediaQuery("(max-width: 850px)");
   const { user, setUser } = useContext(UserContext);
-  const [errorMessage, setErrorMessage] = useState({
-    infos: "",
-    password: "",
-  });
-  const [successMessage, setSuccessMessage] = useState({
-    infos: "",
-    password: "",
-  });
   const [isLoadingInfo, setIsLoadingInfo] = useState(false);
   const [isLoadingPassword, setIsLoadingPassword] = useState(false);
   const { name, firstname, password, passwordConfirm } = useCustomFormFields();
+  const { message } = App.useApp();
 
   useEffect(() => {
     getAccount(navigate, setUser);
   }, [navigate, setUser]);
 
+  const displayMessage = (res) => {
+    if(res.success) {
+      message.success(res.message);
+    } else {
+      message.error(res.message);
+    }
+  }
+
   const handleInfoChange = async (info) => {
-    setErrorMessage({});
-    setSuccessMessage({});
     setIsLoadingInfo(true);
 
-    await editUser(info, user, setUser, setSuccessMessage, setErrorMessage);
-
+    const res = await editUser(info, user, setUser);
+    displayMessage(res);
     setIsLoadingInfo(false);
   };
 
   const handlePasswordChange = async (info) => {
-    setErrorMessage({});
-    setSuccessMessage({});
     setIsLoadingPassword(true);
 
-    await editPassword(info, user, setSuccessMessage, setErrorMessage);
+    const res = await editPassword(info, user);
+    displayMessage(res);
     setIsLoadingPassword(false);
   };
 
   const handleDeleteAccount = async () => {
-    setErrorMessage({});
-    setSuccessMessage({});
-
     await deleteUser(navigate, setUser, user);
   };
 
@@ -84,16 +79,6 @@ export default function AccountPage() {
                 isLoading={isLoadingInfo}
                 centerBtn={true}
               />
-              {successMessage.infos && (
-                <span style={{ color: Colors.success, marginTop: 8 }}>
-                  {successMessage.infos}
-                </span>
-              )}
-              {errorMessage.infos && (
-                <span style={{ color: Colors.error, marginTop: 8 }}>
-                  {errorMessage.infos}
-                </span>
-              )}
             </Flex>
             <br />
             <br />
@@ -108,16 +93,6 @@ export default function AccountPage() {
                 isLoading={isLoadingPassword}
                 centerBtn={true}
               />
-              {successMessage.password && (
-                <span style={{ color: Colors.success, marginTop: 8 }}>
-                  {successMessage.password}
-                </span>
-              )}
-              {errorMessage.password && (
-                <span style={{ color: Colors.error, marginTop: 8 }}>
-                  {errorMessage.password}
-                </span>
-              )}
             </Flex>
           </>
         ) : null}

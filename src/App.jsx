@@ -10,6 +10,7 @@ import BaseLayout from "./layouts/BaseLayout";
 import UserContextProvider from "./contexts/UserContext";
 import { Paths } from "./constants/paths";
 import GanttPage from "./pages/GanttPage";
+import { App as AppAntD } from "antd";
 
 const router = createBrowserRouter([
   {
@@ -57,17 +58,18 @@ const router = createBrowserRouter([
       },
       {
         path: "gantt",
-        Component: GanttPage
-      }
+        Component: GanttPage,
+      },
     ],
   },
-  
 ]);
 
 export default function App() {
   return (
-    <UserContextProvider>
-      <RouterProvider router={router} />
-    </UserContextProvider>
+    <AppAntD>
+      <UserContextProvider>
+        <RouterProvider router={router} />
+      </UserContextProvider>
+    </AppAntD>
   );
 }
