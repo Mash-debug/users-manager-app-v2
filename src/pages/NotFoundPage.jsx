@@ -27,7 +27,7 @@ export default function NotFoundPage() {
         subTitle={Strings.notFoundPage.message}
         extra={
           <Link to={Paths.account}>
-            <Button>Retour à mon compte</Button>
+            <Button>{Strings.buttons.backToAccount}</Button>
           </Link>
         }
       />

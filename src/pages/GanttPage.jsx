@@ -10,7 +10,6 @@ import manageTasks from "../utils/manageTasks.js";
 export default function GanttPage() {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
-  const [currentZoom, setCurrentZoom] = useState("Days");
   const [tasks, setTasks] = useState({
     data: [],
     links: [],
@@ -33,7 +32,6 @@ export default function GanttPage() {
       <div className="gantt-container" style={{ width: "100%" }}>
         <Gantt
           tasks={tasks}
-          zoom={currentZoom}
           onDataUpdated={(entityType, action, item, id) =>
             handleDataUpdated(action, item)
           }

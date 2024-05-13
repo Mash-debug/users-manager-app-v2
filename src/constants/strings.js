@@ -77,7 +77,8 @@ export const Strings = {
         register: "Inscription",
         registerAlt: "S'inscrire",
         infoUpdate: "Modifier le nom/prénom",
-        passwordUpdate: "Modifier le mot de passe"
+        passwordUpdate: "Modifier le mot de passe",
+        backToAccount: "Retour à mon compte",
     },
     gantt: {
         task: {
@@ -85,5 +86,5 @@ export const Strings = {
             startDate: "Début le",
             duration: "Durée"
         }
-    }
+    },
 }
