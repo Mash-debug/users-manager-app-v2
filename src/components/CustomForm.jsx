@@ -21,6 +21,8 @@ export default function CustomForm({
     onFinish(values);
   };
 
+  
+
   return (
     <Form
       form={form}
@@ -33,7 +35,12 @@ export default function CustomForm({
         ...initialValues,
       }}
     >
-      {(!fields.length || fields.includes("name")) && (
+      {fields.map(field => {
+        return <Form.Item {...field}>
+          <CustomInput type={field.type} />
+        </Form.Item>
+      })}
+      {/* {(!fields.length || fields.includes("name")) && (
         <Form.Item
           label={Strings.form.name.label}
           name="name"
@@ -124,7 +131,7 @@ export default function CustomForm({
         >
           <CustomInput password />
         </Form.Item>
-      )}
+      )} */}
       <Flex justify={centerBtn && "center"}>
         <Button
           htmlType="submit"

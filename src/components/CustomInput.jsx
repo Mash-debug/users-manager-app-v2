@@ -2,7 +2,15 @@ import { Input, ConfigProvider } from "antd";
 import { Colors } from "../constants/colors.js";
 
 // eslint-disable-next-line react/prop-types
-export default function CustomInput({password, ...props}) {
+export default function CustomInput(props) {
+  const { Password } = Input;
+
+  const inputs = {
+    default: <Input {...props} size="large" style={{ minWidth: "300px" }} />,
+    password: (
+      <Password {...props} size="large" style={{ minWidth: "300px" }} />
+    ),
+  };
   return (
     <ConfigProvider
       theme={{
@@ -14,17 +22,7 @@ export default function CustomInput({password, ...props}) {
         },
       }}
     >
-      {password ? (
-        <Input.Password {...props}
-          size="large"
-          style={{ minWidth: "300px" }}
-        />
-      ) : (
-        <Input {...props}
-          size="large"
-          style={{ minWidth: "300px" }}
-        />
-      )}
+      {inputs[props.type]}
     </ConfigProvider>
   );
 }

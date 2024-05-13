@@ -1,4 +1,4 @@
-import { Flex, Typography, Divider } from "antd";
+import { Flex, Typography, Divider, Form } from "antd";
 import CustomForm from "../components/CustomForm";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
@@ -12,6 +12,7 @@ import getAccount from "../utils/getAccount.js";
 import editUser from "../utils/editUser.js";
 import editPassword from "../utils/editPassword.js";
 import deleteUser from "../utils/deleteUser.js";
+import { useCustomFormFields } from "../hooks/useCustomFormFields.js";
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ export default function AccountPage() {
   });
   const [isLoadingInfo, setIsLoadingInfo] = useState(false);
   const [isLoadingPassword, setIsLoadingPassword] = useState(false);
+  const { name, firstname, password, passwordConfirm } = useCustomFormFields();
 
   useEffect(() => {
     getAccount(navigate, setUser);
@@ -76,7 +78,7 @@ export default function AccountPage() {
             <Flex vertical>
               <CustomForm
                 onFinish={handleInfoChange}
-                fields={["name", "firstname"]}
+                fields={[name, firstname]}
                 btnMessage={Strings.buttons.infoUpdate}
                 initialValues={{ name: user.name, firstname: user.firstname }}
                 isLoading={isLoadingInfo}
@@ -98,7 +100,10 @@ export default function AccountPage() {
             <Flex vertical>
               <CustomForm
                 onFinish={handlePasswordChange}
-                fields={["password", "confirmPassword"]}
+                fields={[
+                  password,
+                  passwordConfirm
+                ]}
                 btnMessage={Strings.buttons.passwordUpdate}
                 isLoading={isLoadingPassword}
                 centerBtn={true}

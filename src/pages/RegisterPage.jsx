@@ -9,12 +9,15 @@ import { Paths } from "../constants/paths.js";
 import { Strings } from "../constants/strings.js";
 import getAccount from "../utils/getAccount.js";
 import register from "../utils/register.js";
+import { useCustomFormFields } from "../hooks/useCustomFormFields.js";
 
 export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const { name, firstname, email, password, passwordConfirm } =
+    useCustomFormFields();
 
   useEffect(() => {
     getAccount(navigate, setUser, Paths.register);
@@ -46,7 +49,11 @@ export default function RegisterPage() {
           vertical
           style={{ width: "fit-content", margin: "auto" }}
         >
-          <CustomForm onFinish={handleFinish} isLoading={isLoading} />
+          <CustomForm
+            fields={[name, firstname, email, password, passwordConfirm]}
+            onFinish={handleFinish}
+            isLoading={isLoading}
+          />
           <span style={{ color: Colors.primary, marginTop: 8 }}>
             {Strings.registerPage.hasAccount}{" "}
             <Link

@@ -9,12 +9,14 @@ import { Paths } from "../constants/paths.js";
 import { Strings } from "../constants/strings.js";
 import getAccount from "../utils/getAccount.js";
 import login from "../utils/login.js";
+import { useCustomFormFields } from "../hooks/useCustomFormFields.js";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
+  const { email, password } = useCustomFormFields();
 
   useEffect(() => {
     getAccount(navigate, setUser);
@@ -50,7 +52,10 @@ export default function LoginPage() {
         >
           <CustomForm
             onFinish={handleFinish}
-            fields={["email", "password"]}
+            fields={[
+              email,
+              password
+            ]}
             btnMessage={Strings.buttons.loginAlt}
             isLoading={isLoading}
           />
